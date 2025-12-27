@@ -4,8 +4,16 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.style as style
 import warnings
-
+import pandas as pd
 warnings.filterwarnings("ignore", category=FutureWarning)
+
+
+# Assuming you have a daily returns series for your S&P 493 portfolio called `sp493_daily`
+sp493_monthly = (1 + sp493_daily).resample('M').prod() - 1
+sp493_monthly_df = sp493_monthly.to_frame(name='return').reset_index()
+sp493_monthly_df.columns = ['date', 'return']
+sp493_monthly_df.to_csv('replication/sp500_493_monthly_returns.csv', index=False)
+
 
 def run_backtest_analysis():
     """
