@@ -156,3 +156,16 @@ To compare the standard and modified strategies, the script `long_short_backtest
 3.  **Run Backtests:** Calculate the daily returns of both the "Standard Strategy" (`IWM` - `SPY`) and the "Modified Strategy" (`IWM` - `S&P 493`).
 4.  **Analyze Performance:** Compute and compare the cumulative returns, annualized volatility, and Sharpe ratios of both strategies.
 
+### Academic Validation: Fama-French Size Effect Replication
+
+To ground our modified strategy in established financial theory, we replicated the classic Fama-French size premium (1993) across two regimes:
+
+- **Pre-Mag7 Era (2000–2017)**: Traditional size effect is observed.
+- **Mag7 Era (2018–2024)**: The standard size premium (IWM – SPY) is **eroded or negative**, but our modified version (IWM – S&P 493) **recovers positive risk-adjusted returns**.
+
+Full replication code and results are in the [`replication/`](replication/) folder:
+- `ff_size_replication.R`: R script performing the analysis
+- `size_premium_stats.csv`: Performance table
+- `size_premium_comparison.png`: Cumulative return plots
+
+This confirms that **index concentration has distorted the size factor**, and our modification successfully isolates the intended economic exposure.
